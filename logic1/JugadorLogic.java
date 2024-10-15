@@ -1,39 +1,48 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase para manejar la lógica de los jugadores, interactuando con la capa de datos.
  */
-package modelo.logic1;
-import modelo.beans1.Jugador;
-import modelo.dao1.JugadorDAO;
-/**
- *
- * @author ASUS
- */
-public class JugadorLogic {
+package modelo.logic1; // Paquete donde se encuentra la clase.
+
+import modelo.beans1.Jugador; // Importa la clase Jugador.
+import modelo.dao1.JugadorDAO; // Importa la clase JugadorDAO.
+
+public class JugadorLogic { // Definición de la clase JugadorLogic.
     
-    private static JugadorDAO jugadordao = new JugadorDAO();
-    public static boolean autentificar(String jugador, String contraseña){
-        if(obtener(jugador)!= null){
-            Jugador jugadorConsulta = obtener(jugador);
-            if(obtener(jugador).getJugador().equals(jugador)&& jugadorConsulta.getContraseña().equals(contraseña)){
-            return true;
-            }else{
-            return false;
+    private static JugadorDAO jugadordao = new JugadorDAO(); // Instancia de JugadorDAO.
+
+    // Método para autenticar a un jugador con su usuario y contraseña.
+    public static boolean autentificar(String jugador, String contraseña) {
+        // Comprueba si el jugador existe en la base de datos.
+        if (obtener(jugador) != null) {
+            Jugador jugadorConsulta = obtener(jugador); // Obtiene el jugador.
+            // Verifica si el usuario y la contraseña coinciden.
+            if (jugadorConsulta.getJugador().equals(jugador) && jugadorConsulta.getContraseña().equals(contraseña)) {
+                return true; // Retorna verdadero si la autenticación es exitosa.
+            } else {
+                return false; // Retorna falso si la contraseña no coincide.
             }
-        }else{
-        return false;
+        } else {
+            return false; // Retorna falso si el jugador no existe.
         }
     }
-    public static boolean insertar(Jugador jugador){
-        return jugadordao.insertar(jugador) ;
+
+    // Método para insertar un nuevo jugador.
+    public static boolean insertar(Jugador jugador) {
+        return jugadordao.insertar(jugador); // Llama al método de insertar en JugadorDAO.
     }
-    public static boolean modificar(Jugador jugador){
-        return jugadordao.modificar(jugador) ;
+
+    // Método para modificar un jugador existente.
+    public static boolean modificar(Jugador jugador) {
+        return jugadordao.modificar(jugador); // Llama al método de modificar en JugadorDAO.
     }
-    public static boolean eliminar(String jugador){
-        return jugadordao.eliminar(jugador);
+
+    // Método para eliminar un jugador por su nombre de usuario.
+    public static boolean eliminar(String jugador) {
+        return jugadordao.eliminar(jugador); // Llama al método de eliminar en JugadorDAO.
     }
-    public static Jugador obtener(String jugador){
-        return jugadordao.obtener(jugador);
+
+    // Método para obtener un jugador por su nombre de usuario.
+    public static Jugador obtener(String jugador) {
+        return jugadordao.obtener(jugador); // Llama al método de obtener en JugadorDAO.
     }
 }
