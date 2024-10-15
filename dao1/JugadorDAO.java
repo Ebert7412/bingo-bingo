@@ -1,65 +1,78 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase para manejar la persistencia de los jugadores en una lista.
  */
-package modelo.dao1;
+package modelo.dao1; // Paquete donde se encuentra la clase.
 
-import java.util.ArrayList;
-import java.util.List;
-import modelo.beans1.Jugador;
+import java.util.ArrayList; // Importa la clase ArrayList.
+import java.util.List; // Importa la interfaz List.
+import modelo.beans1.Jugador; // Importa la clase Jugador.
 
-/**
- *
- * @author ASUS
- */
-public class JugadorDAO {
+public class JugadorDAO { // Definición de la clase JugadorDAO.
     
-    private List<Jugador> jugadores;
-    public JugadorDAO(){
-        jugadores = new ArrayList<>();
+    private List<Jugador> jugadores; // Lista para almacenar jugadores.
+
+    // Constructor para inicializar la lista de jugadores.
+    public JugadorDAO() {
+        jugadores = new ArrayList<>(); // Inicializa la lista.
     } 
-    public int buscar(String usuario){
-        int n = -1;
-        for(int i = 0 ; i < jugadores.size();i++){
-            if(jugadores.get(i).getJugador().equals(usuario)){
-                n = i ;
-                break;
+
+    // Método para buscar un jugador por su nombre de usuario.
+    public int buscar(String usuario) {
+        int n = -1; // Inicializa el índice como -1 (no encontrado).
+        // Itera sobre la lista de jugadores.
+        for (int i = 0; i < jugadores.size(); i++) {
+            // Comprueba si el jugador coincide con el usuario buscado.
+            if (jugadores.get(i).getJugador().equals(usuario)) {
+                n = i; // Guarda el índice del jugador encontrado.
+                break; // Sale del bucle.
             }
-                }
-        return n;
+        }
+        return n; // Devuelve el índice o -1 si no se encontró.
     }
-    public boolean insertar(Jugador jugador){
-        if(buscar(jugador.getJugador() )==-1){
-            jugadores.add(jugador);
-            return true;
-        }else{
-            return false;
+
+    // Método para insertar un nuevo jugador en la lista.
+    public boolean insertar(Jugador jugador) {
+        // Solo inserta si el jugador no existe ya en la lista.
+        if (buscar(jugador.getJugador()) == -1) {
+            jugadores.add(jugador); // Agrega el jugador.
+            return true; // Retorna verdadero si se agregó.
+        } else {
+            return false; // Retorna falso si el jugador ya existe.
         }
     }
-    public boolean modificar(Jugador jugador){
-         if(buscar(jugador.getJugador())!=-1){
-            Jugador jugadoraux = obtener(jugador.getJugador());
-            
+
+    // Método para modificar un jugador existente.
+    public boolean modificar(Jugador jugador) {
+        // Solo modifica si el jugador existe.
+        if (buscar(jugador.getJugador()) != -1) {
+            Jugador jugadoraux = obtener(jugador.getJugador()); // Obtiene el jugador.
+            // Actualiza la contraseña y el nombre del jugador.
             jugadoraux.setContraseña(jugador.getContraseña());
             jugadoraux.setNombre(jugador.getNombre());
-            return true;
-        }else{
-            return false;
+            return true; // Retorna verdadero si se modificó.
+        } else {
+            return false; // Retorna falso si el jugador no existe.
         }
     }
-    public boolean eliminar(String jugador){
-        if(buscar(jugador)!=-1){
-           jugadores.remove(buscar(jugador));
-            return true;
-        }else{
-            return false;
+
+    // Método para eliminar un jugador por su nombre de usuario.
+    public boolean eliminar(String jugador) {
+        // Solo elimina si el jugador existe.
+        if (buscar(jugador) != -1) {
+            jugadores.remove(buscar(jugador)); // Elimina el jugador.
+            return true; // Retorna verdadero si se eliminó.
+        } else {
+            return false; // Retorna falso si el jugador no existe.
         }
     }
     
-    public Jugador obtener(String jugador){
-        if(buscar(jugador) != -1){
-            return jugadores.get(buscar(jugador));
-        }else{return null;}
+    // Método para obtener un jugador por su nombre de usuario.
+    public Jugador obtener(String jugador) {
+        // Solo obtiene si el jugador existe.
+        if (buscar(jugador) != -1) {
+            return jugadores.get(buscar(jugador)); // Devuelve el jugador encontrado.
+        } else {
+            return null; // Devuelve null si el jugador no existe.
+        }
     }
-    
 }
