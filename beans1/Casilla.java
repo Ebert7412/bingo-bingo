@@ -1,51 +1,61 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase que representa una casilla en el juego.
  */
-package modelo.beans1;
+package modelo.beans1; // Paquete donde se encuentra la clase.
 
-/**
- *
- * @author ASUS
- */
-public class Casilla{
-    private String estado;
-    private int num;
-    public Casilla(){
-        num = 0;
-        estado = "No marcado";
+public class Casilla { // Definición de la clase Casilla.
+    private String estado; // Estado de la casilla (marcada o no).
+    private int num; // Número de la casilla.
+
+    // Constructor por defecto.
+    public Casilla() {
+        num = 0; // Inicializa el número en 0.
+        estado = "No marcado"; // Estado inicial.
     }
-    public Casilla(int num){
-        this.num = num;
-        estado = "No marcado";
+
+    // Constructor con un número específico.
+    public Casilla(int num) {
+        this.num = num; // Asigna el número.
+        estado = "No marcado"; // Estado inicial.
     }
-     public Casilla(int num, String estado){
-        this.num = num;
-        this.estado = estado;
+
+    // Constructor con número y estado específicos.
+    public Casilla(int num, String estado) {
+        this.num = num; // Asigna el número.
+        this.estado = estado; // Asigna el estado.
     }
-    public boolean compCasilla(Casilla a, Casilla b, Casilla c){
-        boolean res = false;
-        if(res){
-        }else{
-            res = (a.getNum() == b.getNum() || b.getNum() == c.getNum()) || a.getNum() == c.getNum();
-        }
-        return res;
+
+    // Método para comparar tres casillas.
+    public boolean compCasilla(Casilla a, Casilla b, Casilla c) {
+        boolean res = false; // Inicializa el resultado como falso.
+        // Comprueba si los números de las casillas son iguales.
+        res = (a.getNum() == b.getNum() || b.getNum() == c.getNum() || a.getNum() == c.getNum());
+        return res; // Devuelve el resultado.
     }
-    
-    public int getNum(){
-        return num;
+
+    // Método para obtener el número de la casilla.
+    public int getNum() {
+        return num; // Devuelve el número.
     }
-    public void setNum(int num){
-        this.num = num;
+
+    // Método para establecer el número de la casilla.
+    public void setNum(int num) {
+        this.num = num; // Asigna un nuevo número.
     }
-    public String getEstado(){
-    return estado;
+
+    // Método para obtener el estado de la casilla.
+    public String getEstado() {
+        return estado; // Devuelve el estado.
     }
-    public void setEstado(String estado){
-        this.estado = estado;
+
+    // Método para establecer el estado de la casilla.
+    public void setEstado(String estado) {
+        this.estado = estado; // Asigna un nuevo estado.
     }
+
+    // Método para representar la casilla como cadena.
     @Override
-    public String toString(){
-        return "" + getNum();
+    public String toString() {
+        return "" + getNum(); // Devuelve el número como cadena.
     }
 }
